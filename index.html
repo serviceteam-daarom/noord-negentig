@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noord Negentig | Dé accountant voor zorgprofessionals en MKB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABELEN: EXACTE HUISSTIJL --- */
+        :root {
+            --primary: #AB0054;       /* Noord Negentig Magenta/Bordeaux */
+            --primary-hover: #8A0043;
+            --brand-cyan: #25B3DD;    /* Noord Negentig Cyaanblauw */
+            --brand-cyan-hover: #1A92B8;
+            --accent: #F4F9FC;        /* Zeer lichte cyaan tint voor zachte achtergronden */
+            --text-main: #333333;
+            --text-light: #555555;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { color: var(--text-main); line-height: 1.6; background-color: var(--bg-white); }
+        a { text-decoration: none; color: var(--primary); transition: color 0.3s ease; }
+        a:hover { color: var(--brand-cyan); }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 80px 0; }
+        .bg-accent { background-color: var(--accent); }
+        .bg-primary { background-color: var(--primary); color: white; }
+        .bg-cyan { background-color: var(--brand-cyan); color: white; }
+        .bg-gray { background-color: var(--bg-gray); }
+
+        /* --- TYPOGRAFIE --- */
+        h1, h2, h3, h4 { font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.2; }
+        .bg-primary h2, .bg-primary h3, .bg-primary p,
+        .bg-cyan h2, .bg-cyan h3, .bg-cyan p { color: white; }
+        p { margin-bottom: 16px; color: var(--text-light); }
+        .text-center { text-align: center; }
+
+        /* --- BUTTONS & LABELS --- */
+        .btn { display: inline-block; background-color: var(--primary); color: white !important; padding: 14px 28px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s ease; }
+        .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(171, 0, 84, 0.2); }
+        
+        .btn-cyan { background-color: var(--brand-cyan); color: white !important; }
+        .btn-cyan:hover { background-color: var(--brand-cyan-hover); box-shadow: 0 4px 10px rgba(37, 179, 221, 0.3); }
+
+        .badge-cyan { background-color: var(--brand-cyan); color: white; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+        .badge-magenta { background-color: var(--primary); color: white; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+
+        .btn-white { background-color: white; color: var(--primary) !important; }
+        .btn-white:hover { background-color: var(--accent); }
+
+        /* --- NAVIGATIE (STICKY) --- */
+        header { position: sticky; top: 0; background: white; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 3px solid var(--brand-cyan); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; max-width: 1200px; margin: 0 auto; }
+        .logo { cursor: pointer; display: flex; align-items: center; }
+        .logo svg { height: 45px; width: 170px; } /* Afmetingen van het ingeladen SVG logo */
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links span { cursor: pointer; font-weight: 500; color: var(--text-main); transition: color 0.2s; }
+        .nav-links span:hover, .nav-links span.active-link { color: var(--brand-cyan); }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .phone { font-weight: 600; color: var(--primary); }
+
+        /* --- CARDS & GRIDS --- */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        
+        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; border: 1px solid #f0f0f0; border-top: 3px solid var(--primary); cursor: pointer; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 3px solid var(--brand-cyan); }
+        .card i { font-size: 32px; color: var(--brand-cyan); margin-bottom: 20px; transition: color 0.3s; }
+        .card:hover i { color: var(--primary); }
+
+        .blog-card { border-top: none; overflow: hidden; padding: 0; }
+        .blog-card:hover { border-top: none; }
+        .blog-image { height: 200px; background-color: #eee; background-size: cover; background-position: center; }
+        .blog-content { padding: 25px; }
+        .blog-date { font-size: 13px; color: #888; margin-bottom: 10px; display: block; }
+
+        /* --- BREADCRUMBS --- */
+        .breadcrumbs { padding: 20px 0; font-size: 14px; color: var(--text-light); }
+        .breadcrumbs span { cursor: pointer; color: var(--primary); font-weight: 500; }
+        .breadcrumbs span:hover { color: var(--brand-cyan); }
+
+        /* --- HERO SECTIE MET DE NIEUWE AFBEELDING --- */
+        .hero { 
+            padding: 100px 0; 
+            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://noordnegentig.nl/media/1/_1200x300_crop_center-center_none_ns/Stocksy_txpf82342cfRjz000_Medium_554480-uitsnede.jpeg') center/cover no-repeat; 
+        }
+        
+        /* Banner voor subpagina's */
+        .page-banner {
+            height: 150px;
+            background: linear-gradient(rgba(37, 179, 221, 0.8), rgba(171, 0, 84, 0.8)), url('https://noordnegentig.nl/media/1/_1200x300_crop_center-center_none_ns/Stocksy_txpf82342cfRjz000_Medium_554480-uitsnede.jpeg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        .trust-bar { padding: 30px 0; text-align: center; font-weight: 600; color: var(--primary); display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
+        .trust-bar i { color: var(--brand-cyan); }
+        
+        .testimonial-card { font-style: italic; position: relative; border-top: 3px solid var(--brand-cyan); }
+        .testimonial-card:hover { border-top: 3px solid var(--primary); }
+        .testimonial-author { font-style: normal; font-weight: 600; margin-top: 15px; display: block; color: var(--primary); }
+        .stars { color: var(--brand-cyan); margin-top: 5px; }
+
+        /* --- FAQ ACCORDION --- */
+        details { background: white; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 3px solid var(--primary); }
+        summary { padding: 20px; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--primary); }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '\f078'; font-family: 'FontAwesome'; transition: transform 0.3s; color: var(--brand-cyan); }
+        details[open] summary::after { transform: rotate(180deg); }
+        .faq-content { padding: 0 20px 20px; color: var(--text-light); }
+
+        /* --- CONTACT FORM --- */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Inter'; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--accent); }
+
+        /* --- FOOTER --- */
+        footer { background-color: var(--primary); color: white; padding: 60px 0 30px; border-top: 4px solid var(--brand-cyan); }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+        footer a { color: var(--accent); }
+        footer a:hover { color: var(--brand-cyan); }
+        .footer-logo { background-color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: inline-block; }
+        .footer-logo svg { height: 50px; width: 180px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; text-align: center; font-size: 14px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .grid-2, .grid-3, .grid-4, .contact-grid { grid-template-columns: 1fr; }
+            .nav-links, .phone { display: none; }
+        }
+
+        .page { display: none; animation: fadeIn 0.4s ease-in-out; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <svg style="display: none;">
+        <symbol id="logo-noord-negentig" viewBox="0 0 688.98 181.81">
+            <path fill="var(--primary)" d="M24.72,39.17c0-5.39-3.13-12.91-6.95-16.72L2.2,6.92C-1.62,3.12-.33,0,5.07,0h49.21c5.4,0,12.95,3.12,16.77,6.92l15.57,15.53c3.82,3.81,6.94,11.33,6.94,16.72v72.73c0,5.38-4.41,9.79-9.82,9.79h-49.21c-5.4,0-9.82-4.41-9.82-9.79V39.17h0Z"/>
+            <path fill="var(--brand-cyan)" d="M123.78,62.09c0-5.39-3.13-12.91-6.95-16.71l-15.57-15.53c-3.82-3.81-2.52-6.92,2.87-6.92h49.21c5.4,0,12.95,3.12,16.76,6.92l15.58,15.53c3.82,3.81,6.94,11.33,6.94,16.71v109.93c0,5.39-4.41,9.79-9.81,9.79h-49.21c-5.4,0-9.82-4.4-9.82-9.79V62.09h0Z"/>
+            <g fill="var(--primary)">
+                <path d="M447.47,141.08c0-2.31-.3-4.78-1.81-6.28-.78-.78-2.11-1.29-3.62-1.29-1.63,0-2.98.36-4.19,1.89v-8.33h-2.17v21.42h2.17v-1.78c1.21,1.57,2.57,1.96,4.19,1.96,1.51,0,2.84-.52,3.62-1.3,1.51-1.5,1.81-3.96,1.81-6.28h0ZM445.3,141.08c0,2.89-.48,5.66-3.71,5.66s-3.74-2.77-3.74-5.66.51-5.65,3.74-5.65,3.71,2.77,3.71,5.65h0Z"/>
+                <path d="M463.8,141.66v-1c0-4.39-2.26-7.16-6.09-7.16s-6.1,2.79-6.1,7.58c0,5.24,2.57,7.58,6.49,7.58,2.53,0,3.92-.78,5.43-2.29l-1.48-1.29c-1.18,1.18-2.17,1.69-3.89,1.69-2.84,0-4.38-1.87-4.38-5.11h10.02ZM461.63,140.03h-7.84c.06-1.2.12-1.65.45-2.46.57-1.35,1.9-2.22,3.47-2.22s2.89.87,3.47,2.22c.33.81.39,1.26.45,2.46h0Z"/>
+                <path d="M474.01,148.48v-1.87h-1.18c-1.51,0-1.99-.72-1.99-2.17v-17.38h-2.17v17.47c0,2.26,1.17,3.95,3.77,3.95h1.57Z"/>
+                <path d="M488.59,148.48v-10.05c0-3.22-1.96-4.93-5.95-4.93-2.41,0-3.92.48-5.25,2.19l1.48,1.36c.88-1.23,1.84-1.69,3.74-1.69,2.72,0,3.8,1.09,3.8,3.25v1.41h-4.47c-3.32,0-5.13,1.69-5.13,4.27,0,1.18.39,2.29,1.12,3.01.93.96,2.14,1.36,4.19,1.36s3.08-.39,4.28-1.6v1.42h2.17ZM486.41,143.25c0,1.23-.24,2.08-.75,2.56-.93.9-2.05.99-3.32.99-2.35,0-3.41-.81-3.41-2.53s1.09-2.61,3.32-2.61h4.16v1.59h0Z"/>
+                <path d="M504.88,144.15c0-2.77-1.78-3.76-4.37-4l-2.38-.21c-1.87-.15-2.6-.9-2.6-2.17,0-1.5,1.15-2.43,3.32-2.43,1.54,0,2.89.35,3.95,1.17l1.42-1.42c-1.33-1.08-3.23-1.59-5.34-1.59-3.17,0-5.46,1.62-5.46,4.33,0,2.44,1.54,3.73,4.43,3.97l2.44.21c1.72.16,2.47.87,2.47,2.17,0,1.74-1.51,2.62-3.95,2.62-1.84,0-3.44-.48-4.62-1.71l-1.45,1.44c1.63,1.56,3.59,2.14,6.1,2.14,3.59,0,6.03-1.65,6.03-4.51h0Z"/>
+                <path d="M514.85,148.48v-1.87h-1.15c-1.39,0-2.02-.81-2.02-2.17v-9.02h3.17v-1.65h-3.17v-4.64h-2.17v4.64h-1.87v1.65h1.87v9.08c0,2.19,1.27,3.97,3.8,3.97h1.54Z"/>
+                <path d="M521.64,148.48v-14.8h-2.17v14.8h2.17ZM521.79,129.47v-2.43h-2.45v2.43h2.45Z"/>
+                <path d="M539.08,148.48v-9.48c0-1.71-.48-3.1-1.54-4.12-.91-.91-2.2-1.38-3.8-1.38s-3.11.6-4.16,1.8v-1.62h-2.17v14.8h2.17v-9.12c0-2.59,1.45-3.94,3.68-3.94s3.65,1.32,3.65,3.94v9.12h2.17Z"/>
+                <path d="M555.62,148.94v-15.25h-2.14v1.75c-1.2-1.57-2.53-1.93-4.16-1.93-1.51,0-2.83.51-3.62,1.29-1.48,1.47-1.81,3.76-1.81,6.17s.33,4.68,1.81,6.16c.78.78,2.08,1.33,3.59,1.33,1.6,0,2.96-.4,4.16-1.93v2.31c0,2.53-1.21,4.55-4.07,4.55-1.72,0-2.47-.51-3.56-1.47l-1.42,1.38c1.57,1.42,2.81,1.98,5.04,1.98,3.89,0,6.18-2.68,6.18-6.34h0ZM553.45,140.97c0,2.77-.45,5.53-3.68,5.53s-3.71-2.77-3.71-5.53.48-5.53,3.71-5.53,3.68,2.77,3.68,5.53h0Z"/>
+                <path d="M571.95,148.48v-10.05c0-3.22-1.96-4.93-5.94-4.93-2.41,0-3.92.48-5.25,2.19l1.48,1.36c.88-1.23,1.84-1.69,3.74-1.69,2.71,0,3.8,1.09,3.8,3.25v1.41h-4.46c-3.32,0-5.13,1.69-5.13,4.27,0,1.18.39,2.29,1.12,3.01.93.96,2.14,1.36,4.19,1.36s3.08-.39,4.28-1.6v1.42h2.17ZM569.78,143.25c0,1.23-.24,2.08-.75,2.56-.93.9-2.05.99-3.32.99-2.35,0-3.41-.81-3.41-2.53s1.09-2.61,3.32-2.61h4.16v1.59h0Z"/>
+                <path d="M588.55,148.48v-21.42h-2.17v8.33c-1.21-1.53-2.57-1.89-4.19-1.89-1.52,0-2.84.51-3.62,1.29-1.51,1.5-1.81,3.97-1.81,6.28s.3,4.78,1.81,6.28c.78.78,2.11,1.3,3.62,1.3,1.62,0,3.01-.39,4.22-1.96v1.78h2.15ZM586.38,141.08c0,2.89-.49,5.66-3.71,5.66s-3.74-2.77-3.74-5.66.51-5.65,3.74-5.65,3.71,2.77,3.71,5.65h0Z"/>
+                <polygon points="604.73 133.69 602.37 133.69 598.3 145.57 594.26 133.69 591.91 133.69 597.34 148.48 599.27 148.48 604.73 133.69 604.73 133.69"/>
+                <path d="M610.26,148.48v-14.8h-2.17v14.8h2.17ZM610.41,129.47v-2.43h-2.45v2.43h2.45Z"/>
+                <path d="M626.73,144.15c0-2.77-1.78-3.76-4.37-4l-2.39-.21c-1.87-.15-2.59-.9-2.59-2.17,0-1.5,1.15-2.43,3.32-2.43,1.54,0,2.9.35,3.95,1.17l1.42-1.42c-1.33-1.08-3.23-1.59-5.34-1.59-3.17,0-5.46,1.62-5.46,4.33,0,2.44,1.54,3.73,4.43,3.97l2.45.21c1.72.16,2.47.87,2.47,2.17,0,1.74-1.51,2.62-3.94,2.62-1.84,0-3.44-.48-4.62-1.71l-1.45,1.44c1.63,1.56,3.59,2.14,6.09,2.14,3.59,0,6.04-1.65,6.04-4.51h0Z"/>
+                <path d="M642.67,141.66v-1c0-4.39-2.27-7.16-6.09-7.16s-6.1,2.79-6.1,7.58c0,5.24,2.57,7.58,6.49,7.58,2.54,0,3.93-.78,5.43-2.29l-1.48-1.29c-1.18,1.18-2.17,1.69-3.89,1.69-2.84,0-4.38-1.87-4.38-5.11h10.02ZM640.5,140.03h-7.85c.07-1.2.12-1.65.45-2.46.58-1.35,1.9-2.22,3.48-2.22s2.89.87,3.47,2.22c.33.81.4,1.26.45,2.46h0Z"/>
+                <path d="M659.12,148.48v-14.8h-2.17v9.11c0,2.59-1.48,3.94-3.71,3.94s-3.62-1.33-3.62-3.94v-9.11h-2.17v9.44c0,1.71.45,3.13,1.52,4.15.9.9,2.23,1.38,3.83,1.38s3.14-.63,4.19-1.84v1.66h2.14Z"/>
+                <path d="M674.75,134.89c-1.05-1.05-2.14-1.38-3.56-1.38-1.72,0-3.35.75-4.17,1.98v-1.8h-2.16v14.8h2.16v-9.08c0-2.26,1.39-3.97,3.57-3.97,1.15,0,1.75.26,2.56,1.08l1.6-1.62h0Z"/>
+                <path d="M688.27,144.15c0-2.77-1.78-3.76-4.37-4l-2.39-.21c-1.87-.15-2.59-.9-2.59-2.17,0-1.5,1.15-2.43,3.32-2.43,1.54,0,2.9.35,3.95,1.17l1.42-1.42c-1.33-1.08-3.23-1.59-5.34-1.59-3.17,0-5.46,1.62-5.46,4.33,0,2.44,1.54,3.73,4.43,3.97l2.45.21c1.72.16,2.47.87,2.47,2.17,0,1.74-1.51,2.62-3.94,2.62-1.84,0-3.43-.48-4.61-1.71l-1.45,1.44c1.63,1.56,3.59,2.14,6.09,2.14,3.59,0,6.04-1.65,6.04-4.51h0Z"/>
+                <path d="M232.69,148.33v-10.05c0-3.21-1.96-4.93-5.94-4.93-2.42,0-3.92.49-5.25,2.2l1.48,1.35c.87-1.23,1.84-1.68,3.74-1.68,2.72,0,3.8,1.08,3.8,3.25v1.42h-4.46c-3.32,0-5.13,1.68-5.13,4.27,0,1.17.39,2.28,1.12,3.01.94.96,2.14,1.35,4.19,1.35s3.08-.39,4.28-1.59v1.41h2.17ZM230.51,143.1c0,1.23-.24,2.07-.75,2.55-.94.9-2.05,1-3.32,1-2.35,0-3.41-.82-3.41-2.53s1.08-2.62,3.32-2.62h4.16v1.6h0Z"/>
+                <path d="M248.92,146.32l-1.48-1.42c-1.12,1.24-1.99,1.68-3.41,1.68s-2.66-.57-3.44-1.68c-.69-.96-.96-2.11-.96-3.97s.27-3,.96-3.97c.79-1.11,1.99-1.69,3.44-1.69s2.29.42,3.41,1.65l1.48-1.38c-1.54-1.66-2.84-2.2-4.89-2.2-3.74,0-6.58,2.53-6.58,7.58s2.83,7.58,6.58,7.58c2.05,0,3.35-.54,4.89-2.19h0Z"/>
+                <path d="M263.56,146.32l-1.48-1.42c-1.11,1.24-1.99,1.68-3.41,1.68s-2.65-.57-3.44-1.68c-.69-.96-.97-2.11-.97-3.97s.27-3,.97-3.97c.78-1.11,1.99-1.69,3.44-1.69s2.29.42,3.41,1.65l1.48-1.38c-1.54-1.66-2.83-2.2-4.89-2.2-3.74,0-6.58,2.53-6.58,7.58s2.84,7.58,6.58,7.58c2.05,0,3.35-.54,4.89-2.19h0Z"/>
+                <path d="M278.89,140.93c0-2.29-.3-4.36-1.81-5.9-1.03-1.02-2.45-1.69-4.25-1.69s-3.23.67-4.26,1.69c-1.51,1.53-1.81,3.61-1.81,5.9s.3,4.36,1.81,5.9c1.03,1.02,2.44,1.68,4.26,1.68s3.23-.66,4.25-1.68c1.51-1.54,1.81-3.61,1.81-5.9h0ZM276.72,140.93c0,1.66-.09,3.48-1.18,4.57-.7.69-1.66,1.08-2.72,1.08s-1.99-.39-2.69-1.08c-1.08-1.09-1.21-2.92-1.21-4.57s.12-3.49,1.21-4.57c.69-.69,1.63-1.09,2.69-1.09s2.02.4,2.72,1.09c1.08,1.08,1.18,2.91,1.18,4.57h0Z"/>
+                <path d="M295.37,148.33v-14.8h-2.17v9.12c0,2.59-1.48,3.94-3.71,3.94s-3.62-1.32-3.62-3.94v-9.12h-2.17v9.44c0,1.71.45,3.13,1.51,4.15.91.91,2.23,1.38,3.83,1.38s3.14-.64,4.19-1.83v1.65h2.14Z"/>
+                <path d="M312.79,148.33v-9.47c0-1.71-.48-3.1-1.54-4.13-.9-.9-2.2-1.38-3.8-1.38s-3.11.6-4.16,1.81v-1.63h-2.17v14.8h2.17v-9.11c0-2.59,1.45-3.94,3.68-3.94s3.65,1.33,3.65,3.94v9.11h2.17Z"/>
+                <path d="M324.08,148.33v-1.86h-1.15c-1.39,0-2.02-.81-2.02-2.16v-9.03h3.17v-1.65h-3.17v-4.63h-2.17v4.63h-1.87v1.65h1.87v9.08c0,2.2,1.27,3.97,3.8,3.97h1.54Z"/>
+                <path d="M339.05,148.33v-10.05c0-3.21-1.96-4.93-5.94-4.93-2.41,0-3.92.49-5.25,2.2l1.48,1.35c.87-1.23,1.84-1.68,3.74-1.68,2.71,0,3.8,1.08,3.8,3.25v1.42h-4.46c-3.32,0-5.13,1.68-5.13,4.27,0,1.17.39,2.28,1.12,3.01.94.96,2.14,1.35,4.19,1.35s3.08-.39,4.28-1.59v1.41h2.17ZM336.88,143.1c0,1.23-.24,2.07-.75,2.55-.94.9-2.05,1-3.32,1-2.35,0-3.41-.82-3.41-2.53s1.09-2.62,3.32-2.62h4.16v1.6h0Z"/>
+                <path d="M356.31,148.33v-9.47c0-1.71-.49-3.1-1.54-4.13-.9-.9-2.2-1.38-3.8-1.38s-3.11.6-4.16,1.81v-1.63h-2.17v14.8h2.17v-9.11c0-2.59,1.45-3.94,3.68-3.94s3.65,1.33,3.65,3.94v9.11h2.17Z"/>
+                <path d="M367.6,148.33v-1.86h-1.14c-1.39,0-2.03-.81-2.03-2.16v-9.03h3.17v-1.65h-3.17v-4.63h-2.16v4.63h-1.87v1.65h1.87v9.08c0,2.2,1.27,3.97,3.8,3.97h1.54Z"/>
+                <path d="M382.93,143.99c0-2.77-1.78-3.76-4.37-3.99l-2.39-.21c-1.87-.15-2.59-.91-2.59-2.16,0-1.51,1.15-2.44,3.32-2.44,1.54,0,2.9.36,3.95,1.18l1.42-1.42c-1.32-1.09-3.22-1.6-5.34-1.6-3.17,0-5.46,1.62-5.46,4.33,0,2.44,1.54,3.73,4.43,3.97l2.45.21c1.72.15,2.48.87,2.48,2.17,0,1.75-1.51,2.62-3.95,2.62-1.85,0-3.44-.49-4.62-1.71l-1.45,1.44c1.63,1.57,3.59,2.13,6.09,2.13,3.59,0,6.04-1.66,6.04-4.51h0Z"/>
+                <path d="M406.69,141.5v-1c0-4.39-2.26-7.16-6.09-7.16s-6.09,2.8-6.09,7.58c0,5.23,2.57,7.58,6.49,7.58,2.54,0,3.92-.78,5.43-2.28l-1.47-1.29c-1.18,1.17-2.17,1.68-3.89,1.68-2.83,0-4.37-1.86-4.37-5.11h10.01ZM404.52,139.88h-7.84c.06-1.2.12-1.65.45-2.47.57-1.35,1.9-2.22,3.47-2.22s2.9.87,3.47,2.22c.34.82.39,1.27.45,2.47h0Z"/>
+                <path d="M423.29,148.33v-9.47c0-1.71-.49-3.1-1.54-4.13-.91-.9-2.2-1.38-3.8-1.38s-3.11.6-4.17,1.81v-1.63h-2.17v14.8h2.17v-9.11c0-2.59,1.45-3.94,3.68-3.94s3.65,1.33,3.65,3.94v9.11h2.17Z"/>
+                <path d="M250.09,94.83v-23c0-4.05-.85-7.46-3.62-10.15-2.13-2.06-5.18-3.27-8.87-3.27s-7.1,1.35-9.58,4.05v-3.62h-7.1v36h7.24v-21.94c0-5.54,3.41-8.02,7.45-8.02s7.24,2.41,7.24,8.02v21.94h7.24ZM287.89,76.8c0-6.03-.85-10.58-4.26-14.13-2.34-2.41-5.89-4.26-10.79-4.26s-8.38,1.85-10.72,4.26c-3.41,3.55-4.26,8.09-4.26,14.13s.85,10.65,4.26,14.2c2.34,2.41,5.82,4.26,10.72,4.26s8.45-1.85,10.79-4.26c3.41-3.55,4.26-8.09,4.26-14.2h0ZM280.64,76.8c0,3.91-.28,7.67-2.48,9.87-1.35,1.35-3.2,2.13-5.32,2.13s-3.91-.78-5.25-2.13c-2.2-2.2-2.48-5.96-2.48-9.87s.28-7.67,2.48-9.87c1.35-1.35,3.12-2.06,5.25-2.06s3.98.71,5.32,2.06c2.2,2.2,2.48,5.96,2.48,9.87h0ZM324.53,76.8c0-6.03-.85-10.58-4.26-14.13-2.34-2.41-5.89-4.26-10.79-4.26s-8.38,1.85-10.72,4.26c-3.41,3.55-4.26,8.09-4.26,14.13s.85,10.65,4.26,14.2c2.34,2.41,5.82,4.26,10.72,4.26s8.45-1.85,10.79-4.26c3.41-3.55,4.26-8.09,4.26-14.2h0ZM317.29,76.8c0,3.91-.28,7.67-2.49,9.87-1.35,1.35-3.2,2.13-5.32,2.13s-3.91-.78-5.25-2.13c-2.2-2.2-2.48-5.96-2.48-9.87s.28-7.67,2.48-9.87c1.35-1.35,3.12-2.06,5.25-2.06s3.98.71,5.32,2.06c2.2,2.2,2.49,5.96,2.49,9.87h0ZM357.94,61.82c-2.49-2.49-5.11-3.41-8.59-3.41-4.05,0-7.74,1.78-9.59,4.33v-3.9h-7.1v36h7.24v-21.87c0-4.97,3.27-8.09,7.17-8.09,2.48,0,3.76.78,5.4,2.41l5.47-5.47h0ZM390.7,94.83v-50.55h-7.24v18.18c-2.63-3.12-5.61-4.05-9.44-4.05-3.62,0-6.74,1.21-8.73,3.2-3.62,3.62-4.05,9.73-4.05,15.19s.43,11.64,4.05,15.27c1.99,1.99,5.18,3.2,8.8,3.2,3.91,0,6.82-.99,9.51-4.26v3.83h7.1ZM383.46,76.8c0,6.39-.92,12-7.46,12s-7.53-5.61-7.53-12,.99-11.93,7.53-11.93,7.46,5.54,7.46,11.93h0ZM454.81,94.83v-23c0-4.05-.85-7.46-3.62-10.15-2.13-2.06-5.18-3.27-8.87-3.27s-7.1,1.35-9.59,4.05v-3.62h-7.1v36h7.24v-21.94c0-5.54,3.41-8.02,7.45-8.02s7.24,2.41,7.24,8.02v21.94h7.24ZM494.19,78.93v-3.2c0-10.22-5.61-17.32-15.26-17.32s-15.27,6.74-15.27,18.39c0,13.7,7.17,18.46,16.19,18.46,6.32,0,9.8-1.92,13.49-5.61l-4.61-4.33c-2.56,2.56-4.69,3.69-8.73,3.69-5.89,0-9.16-3.9-9.16-10.08h23.36ZM487.02,73.89h-16.19c.07-2.2.21-3.27.92-4.9,1.14-2.7,3.76-4.54,7.17-4.54s5.96,1.85,7.1,4.54c.71,1.63.92,2.7.99,4.9h0ZM531.17,94.62v-35.78h-7.03v3.83c-2.7-3.27-5.61-4.26-9.44-4.26-3.62,0-6.67,1.14-8.66,3.12-3.48,3.48-4.05,8.52-4.05,14.63s.57,11.15,4.05,14.63c1.99,1.99,4.97,3.2,8.59,3.2s6.67-.99,9.3-4.12v4.61c0,4.83-2.34,9.16-8.45,9.16-3.55,0-5.54-1.07-7.81-3.19l-4.62,4.62c3.76,3.48,7.24,4.76,12.71,4.76,9.59,0,15.41-6.39,15.41-15.19h0ZM523.93,76.16c0,5.68-.78,11.29-7.31,11.29s-7.38-5.61-7.38-11.29.85-11.29,7.38-11.29,7.31,5.61,7.31,11.29h0ZM570.94,78.93v-3.2c0-10.22-5.61-17.32-15.26-17.32s-15.27,6.74-15.27,18.39c0,13.7,7.17,18.46,16.19,18.46,6.32,0,9.8-1.92,13.49-5.61l-4.62-4.33c-2.56,2.56-4.69,3.69-8.73,3.69-5.89,0-9.16-3.9-9.16-10.08h23.36ZM563.77,73.89h-16.19c.07-2.2.21-3.27.92-4.9,1.14-2.7,3.76-4.54,7.17-4.54s5.96,1.85,7.1,4.54c.71,1.63.92,2.7.99,4.9h0ZM609.23,94.83v-23c0-4.05-.85-7.46-3.62-10.15-2.13-2.06-5.18-3.27-8.88-3.27s-7.1,1.35-9.59,4.05v-3.62h-7.1v36h7.24v-21.94c0-5.54,3.41-8.02,7.46-8.02s7.24,2.41,7.24,8.02v21.94h7.24ZM634.83,94.83v-6.18h-2.98c-2.7,0-3.98-1.56-3.98-4.19v-19.45h6.96v-5.54h-6.96v-10.93h-7.24v10.93h-4.12v5.54h4.12v19.81c0,5.18,3.12,10.01,9.87,10.01h4.33ZM650.45,94.83v-36h-7.24v36h7.24ZM650.66,51.73v-7.67h-7.67v7.67h7.67ZM688.98,94.62v-35.78h-7.03v3.83c-2.7-3.27-5.61-4.26-9.44-4.26-3.62,0-6.67,1.14-8.66,3.12-3.48,3.48-4.05,8.52-4.05,14.63s.57,11.15,4.05,14.63c1.99,1.99,4.97,3.2,8.59,3.2s6.67-.99,9.3-4.12v4.61c0,4.83-2.34,9.16-8.45,9.16-3.55,0-5.54-1.07-7.81-3.19l-4.62,4.62c3.76,3.48,7.24,4.76,12.71,4.76,9.59,0,15.41-6.39,15.41-15.19h0ZM681.74,76.16c0,5.68-.78,11.29-7.31,11.29s-7.38-5.61-7.38-11.29.85-11.29,7.38-11.29,7.31,5.61,7.31,11.29h0Z"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="navTo('home')">
+                <svg><use href="#logo-noord-negentig"></use></svg>
+            </div>
+            <nav class="nav-links">
+                <span onclick="navTo('beroepsgroepen')" id="nav-beroepsgroepen">Beroepsgroepen</span>
+                <span onclick="navTo('diensten')" id="nav-diensten">Diensten</span>
+                <span onclick="navTo('overons')" id="nav-overons">Over ons</span>
+                <span onclick="navTo('blog')" id="nav-blog">Blog</span>
+                <span onclick="navTo('contact')" id="nav-contact">Contact</span>
+            </nav>
+            <div class="nav-right">
+                <span class="phone"><i class="fas fa-phone-alt" style="color: var(--brand-cyan);"></i> (050) 520 53 00</span>
+                <button class="btn btn-cyan" onclick="navTo('contact')">Plan gesprek</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="home" class="page active">
+        <section class="hero">
+            <div class="container">
+                <h1 style="font-size: 48px; max-width: 800px;">Dé accountant voor zorgprofessionals en ondernemers in Noord-Nederland</h1>
+                <p style="font-size: 20px; max-width: 600px; margin-bottom: 30px; color: var(--text-main); font-weight: 500;">Zodat u zich volledig kunt richten op uw patiënten of bedrijf — wij regelen de rest.</p>
+                <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                    <button class="btn" onclick="navTo('contact')">Plan een gratis kennismakingsgesprek</button>
+                    <a href="#" onclick="navTo('beroepsgroepen')" style="font-weight: 600; color: var(--primary);">Bekijk onze expertise per beroepsgroep &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="bg-accent">
+            <div class="container trust-bar">
+                <span><i class="fas fa-check-circle"></i> 30+ jaar ervaring</span>
+                <span><i class="fas fa-handshake"></i> Erkend partner LHV</span>
+                <span><i class="fas fa-user-md"></i> 500+ zorgprofessionals geholpen</span>
+                <span><i class="fas fa-user-tie"></i> Persoonlijke vaste adviseur</span>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center" style="margin-bottom: 50px;">Wij spreken de taal van uw sector</h2>
+                <div class="grid-3">
+                    <div class="card" onclick="navTo('beroepsgroepen')">
+                        <i class="fas fa-stethoscope"></i>
+                        <h3>Zorg</h3>
+                        <p>Voor huisartsen, tandartsen, fysiotherapeuten en apothekers.</p>
+                        <span style="color: var(--brand-cyan); font-weight: 600;">Lees meer &rarr;</span>
+                    </div>
+                    <div class="card" onclick="navTo('beroepsgroepen')">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>Vrije Beroepen</h3>
+                        <p>Voor advocaten, notarissen en andere vrije beroepsbeoefenaren.</p>
+                        <span style="color: var(--brand-cyan); font-weight: 600;">Lees meer &rarr;</span>
+                    </div>
+                    <div class="card" onclick="navTo('beroepsgroepen')">
+                        <i class="fas fa-building"></i>
+                        <h3>MKB</h3>
+                        <p>Voor ondernemers in consultancy, techniek, ICT en logistiek.</p>
+                        <span style="color: var(--brand-cyan); font-weight: 600;">Lees meer &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main id="beroepsgroepen" class="page">
+        <div class="page-banner">
+            <div class="container">
+                <h1 style="color: white; margin: 0; font-size: 36px;">Beroepsgroepen</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="breadcrumbs">
+                <span onclick="navTo('home')">Home</span> > Beroepsgroepen
+            </div>
+            
+            <section class="section" style="padding-top: 20px;">
+                <p style="font-size: 18px; margin-bottom: 40px;">Kies uw sector en ontdek hoe wij uw specifieke praktijk of onderneming financieel gezond houden.</p>
+                
+                <h2 style="border-bottom: 2px solid var(--brand-cyan); padding-bottom: 10px; margin-top: 40px;">Zorg</h2>
+                <div class="grid-4" style="margin-bottom: 50px;">
+                    <div class="card" onclick="navTo('huisarts')"><h4><i class="fas fa-user-md" style="font-size: 20px;"></i> Huisarts</h4><p>Compleet financieel beheer voor uw praktijk.</p></div>
+                    <div class="card"><h4><i class="fas fa-tooth" style="font-size: 20px;"></i> Tandarts</h4><p>Van solo-praktijk tot maatschap.</p></div>
+                    <div class="card"><h4><i class="fas fa-pills" style="font-size: 20px;"></i> Apotheker</h4><p>Inzicht in declaraties en marges.</p></div>
+                    <div class="card"><h4><i class="fas fa-heartbeat" style="font-size: 20px;"></i> Fysiotherapeut</h4><p>Optimalisatie van uw bedrijfsvoering.</p></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <main id="huisarts" class="page">
+        <div class="container">
+            <div class="breadcrumbs">
+                <span onclick="navTo('home')">Home</span> > <span onclick="navTo('beroepsgroepen')">Beroepsgroepen</span> > Huisarts
+            </div>
+        </div>
+        <section class="section" style="padding-top: 20px;">
+            <div class="container">
+                <h1 style="font-size: 42px; max-width: 800px;">Financieel en fiscaal advies voor huisartsen</h1>
+                <p style="font-size: 18px; max-width: 700px; color: var(--text-main); font-weight: 500;">Zodat u zich volledig kunt focussen op uw patiënten.</p>
+            </div>
+        </section>
+    </main>
+
+    <main id="diensten" class="page">
+        <div class="page-banner">
+            <div class="container">
+                <h1 style="color: white; margin: 0; font-size: 36px;">Onze Diensten</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="breadcrumbs">
+                <span onclick="navTo('home')">Home</span> > Diensten
+            </div>
+            
+            <section class="section" style="padding-top: 20px;">
+                <p style="font-size: 18px; margin-bottom: 50px; max-width: 800px;">Bij Noord Negentig bieden we een totaalpakket. Van het samenstellen van uw jaarrekening tot strategisch advies over uw praktijkovername.</p>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Accountancy</h3>
+                        <p>Betrouwbare jaarrekeningen, tussentijdse cijfers en real-time dashboards zodat u precies weet hoe uw praktijk of bedrijf ervoor staat.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Fiscaal Advies</h3>
+                        <p>We verzorgen niet alleen uw aangiftes (IB, Vpb, BTW), maar denken proactief mee over het optimaliseren van uw belastingpositie.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h3>Praktijkovername</h3>
+                        <p>Volledige begeleiding bij de aan- of verkoop van een praktijk of bedrijf. Inclusief waardebepaling, due diligence en contracten.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <main id="overons" class="page">
+        <div class="container">
+            <div class="breadcrumbs">
+                <span onclick="navTo('home')">Home</span> > Over ons
+            </div>
+            
+            <section class="section" style="padding-top: 20px;">
+                <div class="grid-2" style="align-items: center;">
+                    <div>
+                        <h1>Persoonlijk, betrokken en proactief</h1>
+                        <p style="font-size: 18px; margin-bottom: 20px;">Noord Negentig is al meer dan 30 jaar een begrip in Groningen en omstreken. Wat ooit begon als een klein regionaal kantoor, is uitgegroeid tot dé vertrouwenspartner voor honderden zorgprofessionals en MKB-ondernemers in Noord-Nederland.</p>
+                        
+                        <div style="margin-top: 30px;">
+                            <h3 style="color: var(--brand-cyan);"><i class="fas fa-bullseye"></i> Onze Missie</h3>
+                            <p>Het financieel ontzorgen en fiscaal optimaliseren van ondernemers en medici, met een persoonlijke aanpak die net zo betrokken is als uzelf.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="width: 100%; height: 400px; background: url('N90_video_placeholder_2024-10-01-071140_qupq.jpg') center/cover; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-bottom: 5px solid var(--brand-cyan);"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <main id="blog" class="page">
+        <div class="container">
+            <div class="breadcrumbs">
+                <span onclick="navTo('home')">Home</span> > Blog & Actueel
+            </div>
+            <section class="section" style="padding-top: 20px;">
+                <h1>Kennisbank & Actueel</h1>
+                <p style="font-size: 18px;">Blijf op de hoogte van de laatste fiscale en sector-specifieke ontwikkelingen.</p>
+            </section>
+        </div>
+    </main>
+
+    <main id="contact" class="page">
+        <div class="container">
+            <div class="breadcrumbs">
+                <span onclick="navTo('home')">Home</span> > Contact
+            </div>
+            <section class="section" style="padding-top: 20px;">
+                <div class="contact-grid">
+                    <div>
+                        <h1 style="font-size: 42px;">Neem contact op</h1>
+                        <p style="font-size: 18px; margin-bottom: 40px;">Wij reageren binnen 1 werkdag. Liever direct iemand spreken? Bel ons op <strong style="color: var(--brand-cyan);">(050) 520 53 00</strong>.</p>
+                        <div style="margin-bottom: 30px;">
+                            <h4 style="margin-bottom: 5px; color: var(--primary);"><i class="fas fa-map-marker-alt" style="width: 20px; color: var(--brand-cyan);"></i> Bezoekadres</h4>
+                            <p>Paterswoldseweg 813<br>9728 BM Groningen</p>
+                        </div>
+                        <div style="margin-bottom: 30px;">
+                            <h4 style="margin-bottom: 5px; color: var(--primary);"><i class="fas fa-clock" style="width: 20px; color: var(--brand-cyan);"></i> Openingstijden</h4>
+                            <p>Bereikbaar op werkdagen van 8:30 – 17:30</p>
+                        </div>
+                    </div>
+                    <div class="card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 4px solid var(--primary);">
+                        <form onsubmit="event.preventDefault(); alert('Verzonden!');">
+                            <div class="form-group"><label>Naam *</label><input type="text" required></div>
+                            <div class="form-group"><label>E-mailadres *</label><input type="email" required></div>
+                            <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Verstuur bericht</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <svg><use href="#logo-noord-negentig"></use></svg>
+                    <p style="color: #ccc; margin-top: 10px;">Paterswoldseweg 813<br>9728 BM Groningen</p>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 20px;">Snel naar</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('beroepsgroepen')">Beroepsgroepen</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('diensten')">Diensten</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('overons')">Over ons</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('blog')">Blog</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('contact')">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Noord Negentig. Alle rechten voorbehouden.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function navTo(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-links span').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
+            document.getElementById(pageId).classList.add('active');
+            
+            let activeLink = document.getElementById('nav-' + pageId);
+            if(activeLink) {
+                activeLink.classList.add('active-link');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
