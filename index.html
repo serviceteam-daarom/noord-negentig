@@ -3,146 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noord Negentig | Dé accountant voor zorgprofessionals en MKB</title>
+    <title>Home - Noord Negentig</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        /* --- CSS VARIABELEN: EXACTE HUISSTIJL --- */
-        :root {
-            --primary: #AB0054;       /* Noord Negentig Magenta/Bordeaux */
-            --primary-hover: #8A0043;
-            --brand-cyan: #25B3DD;    /* Noord Negentig Cyaanblauw */
-            --brand-cyan-hover: #1A92B8;
-            --accent: #F4F9FC;        /* Zeer lichte cyaan tint voor zachte achtergronden */
-            --text-main: #333333;
-            --text-light: #555555;
-            --bg-white: #FFFFFF;
-            --bg-gray: #F9FAFB;
-        }
+        <link rel="stylesheet" href="styles/site.css">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { color: var(--text-main); line-height: 1.6; background-color: var(--bg-white); }
-        a { text-decoration: none; color: var(--primary); transition: color 0.3s ease; }
-        a:hover { color: var(--brand-cyan); }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .section { padding: 80px 0; }
-        .bg-accent { background-color: var(--accent); }
-        .bg-primary { background-color: var(--primary); color: white; }
-        .bg-cyan { background-color: var(--brand-cyan); color: white; }
-        .bg-gray { background-color: var(--bg-gray); }
 
-        /* --- TYPOGRAFIE --- */
-        h1, h2, h3, h4 { font-weight: 700; color: var(--primary); margin-bottom: 20px; line-height: 1.2; }
-        .bg-primary h2, .bg-primary h3, .bg-primary p,
-        .bg-cyan h2, .bg-cyan h3, .bg-cyan p { color: white; }
-        p { margin-bottom: 16px; color: var(--text-light); }
-        .text-center { text-align: center; }
-
-        /* --- BUTTONS & LABELS --- */
-        .btn { display: inline-block; background-color: var(--primary); color: white !important; padding: 14px 28px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s ease; }
-        .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(171, 0, 84, 0.2); }
-        
-        .btn-cyan { background-color: var(--brand-cyan); color: white !important; }
-        .btn-cyan:hover { background-color: var(--brand-cyan-hover); box-shadow: 0 4px 10px rgba(37, 179, 221, 0.3); }
-
-        .badge-cyan { background-color: var(--brand-cyan); color: white; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
-        .badge-magenta { background-color: var(--primary); color: white; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
-
-        .btn-white { background-color: white; color: var(--primary) !important; }
-        .btn-white:hover { background-color: var(--accent); }
-
-        /* --- NAVIGATIE (STICKY) --- */
-        header { position: sticky; top: 0; background: white; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 3px solid var(--brand-cyan); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; max-width: 1200px; margin: 0 auto; }
-        .logo { cursor: pointer; display: flex; align-items: center; }
-        .logo svg { height: 45px; width: 170px; } /* Afmetingen van het ingeladen SVG logo */
-        .nav-links { display: flex; gap: 24px; align-items: center; }
-        .nav-links span { cursor: pointer; font-weight: 500; color: var(--text-main); transition: color 0.2s; }
-        .nav-links span:hover, .nav-links span.active-link { color: var(--brand-cyan); }
-        .nav-right { display: flex; align-items: center; gap: 20px; }
-        .phone { font-weight: 600; color: var(--primary); }
-
-        /* --- CARDS & GRIDS --- */
-        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        
-        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; border: 1px solid #f0f0f0; border-top: 3px solid var(--primary); cursor: pointer; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 3px solid var(--brand-cyan); }
-        .card i { font-size: 32px; color: var(--brand-cyan); margin-bottom: 20px; transition: color 0.3s; }
-        .card:hover i { color: var(--primary); }
-
-        .blog-card { border-top: none; overflow: hidden; padding: 0; }
-        .blog-card:hover { border-top: none; }
-        .blog-image { height: 200px; background-color: #eee; background-size: cover; background-position: center; }
-        .blog-content { padding: 25px; }
-        .blog-date { font-size: 13px; color: #888; margin-bottom: 10px; display: block; }
-
-        /* --- BREADCRUMBS --- */
-        .breadcrumbs { padding: 20px 0; font-size: 14px; color: var(--text-light); }
-        .breadcrumbs span { cursor: pointer; color: var(--primary); font-weight: 500; }
-        .breadcrumbs span:hover { color: var(--brand-cyan); }
-
-        /* --- HERO SECTIE MET DE NIEUWE AFBEELDING --- */
-        .hero { 
-            padding: 100px 0; 
-            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://noordnegentig.nl/media/1/_1200x300_crop_center-center_none_ns/Stocksy_txpf82342cfRjz000_Medium_554480-uitsnede.jpeg') center/cover no-repeat; 
-        }
-        
-        /* Banner voor subpagina's */
-        .page-banner {
-            height: 150px;
-            background: linear-gradient(rgba(37, 179, 221, 0.8), rgba(171, 0, 84, 0.8)), url('https://noordnegentig.nl/media/1/_1200x300_crop_center-center_none_ns/Stocksy_txpf82342cfRjz000_Medium_554480-uitsnede.jpeg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-        }
-
-        .trust-bar { padding: 30px 0; text-align: center; font-weight: 600; color: var(--primary); display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
-        .trust-bar i { color: var(--brand-cyan); }
-        
-        .testimonial-card { font-style: italic; position: relative; border-top: 3px solid var(--brand-cyan); }
-        .testimonial-card:hover { border-top: 3px solid var(--primary); }
-        .testimonial-author { font-style: normal; font-weight: 600; margin-top: 15px; display: block; color: var(--primary); }
-        .stars { color: var(--brand-cyan); margin-top: 5px; }
-
-        /* --- FAQ ACCORDION --- */
-        details { background: white; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 3px solid var(--primary); }
-        summary { padding: 20px; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--primary); }
-        summary::-webkit-details-marker { display: none; }
-        summary::after { content: '\f078'; font-family: 'FontAwesome'; transition: transform 0.3s; color: var(--brand-cyan); }
-        details[open] summary::after { transform: rotate(180deg); }
-        .faq-content { padding: 0 20px 20px; color: var(--text-light); }
-
-        /* --- CONTACT FORM --- */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Inter'; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--accent); }
-
-        /* --- FOOTER --- */
-        footer { background-color: var(--primary); color: white; padding: 60px 0 30px; border-top: 4px solid var(--brand-cyan); }
-        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
-        footer a { color: var(--accent); }
-        footer a:hover { color: var(--brand-cyan); }
-        .footer-logo { background-color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: inline-block; }
-        .footer-logo svg { height: 50px; width: 180px; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; text-align: center; font-size: 14px; }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .grid-2, .grid-3, .grid-4, .contact-grid { grid-template-columns: 1fr; }
-            .nav-links, .phone { display: none; }
-        }
-
-        .page { display: none; animation: fadeIn 0.4s ease-in-out; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
 </head>
 <body>
 
@@ -192,44 +61,44 @@
     <main id="home" class="page active">
         <section class="hero">
             <div class="container">
-                <h1 style="font-size: 48px; max-width: 800px;">Dé accountant voor zorgprofessionals en ondernemers in Noord-Nederland</h1>
-                <p style="font-size: 20px; max-width: 600px; margin-bottom: 30px; color: var(--text-main); font-weight: 500;">Zodat u zich volledig kunt richten op uw patiënten of bedrijf — wij regelen de rest.</p>
+                <h1 style="font-size: 48px; max-width: 800px;">Goed voor elkaar.</h1>
+                <p style="font-size: 20px; max-width: 600px; margin-bottom: 30px; color: var(--text-main); font-weight: 500;">Medische en vrije beroepsbeoefenaren, starters en MKB-ondernemers op zoek naar een kantoor, dat alert en proactief ondersteuning en advies biedt op fiscaal en financieel terrein en oog heeft voor de mens achter de cijfers.</p>
                 <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-                    <button class="btn" onclick="navTo('contact')">Plan een gratis kennismakingsgesprek</button>
-                    <a href="#" onclick="navTo('beroepsgroepen')" style="font-weight: 600; color: var(--primary);">Bekijk onze expertise per beroepsgroep &rarr;</a>
+                    <button class="btn" onclick="navTo('contact')">Onze diensten</button>
+                    <a href="#" onclick="navTo('beroepsgroepen')" style="font-weight: 600; color: var(--primary);">Roadmap voor Praktijkovername</a>
                 </div>
             </div>
         </section>
 
         <div class="bg-accent">
             <div class="container trust-bar">
-                <span><i class="fas fa-check-circle"></i> 30+ jaar ervaring</span>
-                <span><i class="fas fa-handshake"></i> Erkend partner LHV</span>
-                <span><i class="fas fa-user-md"></i> 500+ zorgprofessionals geholpen</span>
-                <span><i class="fas fa-user-tie"></i> Persoonlijke vaste adviseur</span>
+                <span><i class="fas fa-check-circle"></i> Goed voor elkaar</span>
+                <span><i class="fas fa-handshake"></i> Wij werken voor</span>
+                <span><i class="fas fa-user-md"></i> Zorg, vrije beroepen en MKB</span>
+                <span><i class="fas fa-user-tie"></i> Advies met oog voor de mens achter de cijfers</span>
             </div>
         </div>
 
         <section class="section">
             <div class="container">
-                <h2 class="text-center" style="margin-bottom: 50px;">Wij spreken de taal van uw sector</h2>
+                <h2 class="text-center" style="margin-bottom: 50px;">Wij werken voor</h2>
                 <div class="grid-3">
                     <div class="card" onclick="navTo('beroepsgroepen')">
                         <i class="fas fa-stethoscope"></i>
                         <h3>Zorg</h3>
-                        <p>Voor huisartsen, tandartsen, fysiotherapeuten en apothekers.</p>
+                        <p>Wil je minder tijd verliezen aan financiële en organisatorische zaken? Zodat jij je aandacht volledig kunt richten op je patiënten? Bij noord negentig kun je terecht met al jouw vragen. Waar ze ook over gaan.</p>
                         <span style="color: var(--brand-cyan); font-weight: 600;">Lees meer &rarr;</span>
                     </div>
                     <div class="card" onclick="navTo('beroepsgroepen')">
                         <i class="fas fa-briefcase"></i>
-                        <h3>Vrije Beroepen</h3>
-                        <p>Voor advocaten, notarissen en andere vrije beroepsbeoefenaren.</p>
+                        <h3>Vrije beroepen</h3>
+                        <p>Jouw financiële en fiscale zaken wil je net zo goed voor elkaar hebben als jouw eigen praktijk. Met de ondersteuning en de adviezen van noord negentig voldoet jouw bedrijfsvoering en administratie aan alle eisen.</p>
                         <span style="color: var(--brand-cyan); font-weight: 600;">Lees meer &rarr;</span>
                     </div>
                     <div class="card" onclick="navTo('beroepsgroepen')">
                         <i class="fas fa-building"></i>
                         <h3>MKB</h3>
-                        <p>Voor ondernemers in consultancy, techniek, ICT en logistiek.</p>
+                        <p>Als MKB-ondernemer heb jij je zaken graag goed voor elkaar: zakelijk en financieel. Wij reiken je de helpende hand met ondersteuning en advies. Jouw ambities en drijfveren zijn ook de onze.</p>
                         <span style="color: var(--brand-cyan); font-weight: 600;">Lees meer &rarr;</span>
                     </div>
                 </div>
@@ -249,14 +118,14 @@
             </div>
             
             <section class="section" style="padding-top: 20px;">
-                <p style="font-size: 18px; margin-bottom: 40px;">Kies uw sector en ontdek hoe wij uw specifieke praktijk of onderneming financieel gezond houden.</p>
+                <p style="font-size: 18px; margin-bottom: 40px;">Zorg, vrije beroepen en MKB-ondernemers: wij ondersteunen jouw financiële en fiscale zaken.</p>
                 
                 <h2 style="border-bottom: 2px solid var(--brand-cyan); padding-bottom: 10px; margin-top: 40px;">Zorg</h2>
                 <div class="grid-4" style="margin-bottom: 50px;">
-                    <div class="card" onclick="navTo('huisarts')"><h4><i class="fas fa-user-md" style="font-size: 20px;"></i> Huisarts</h4><p>Compleet financieel beheer voor uw praktijk.</p></div>
-                    <div class="card"><h4><i class="fas fa-tooth" style="font-size: 20px;"></i> Tandarts</h4><p>Van solo-praktijk tot maatschap.</p></div>
-                    <div class="card"><h4><i class="fas fa-pills" style="font-size: 20px;"></i> Apotheker</h4><p>Inzicht in declaraties en marges.</p></div>
-                    <div class="card"><h4><i class="fas fa-heartbeat" style="font-size: 20px;"></i> Fysiotherapeut</h4><p>Optimalisatie van uw bedrijfsvoering.</p></div>
+                    <div class="card" onclick="navTo('huisarts')"><h4><i class="fas fa-user-md" style="font-size: 20px;"></i> Huisarts</h4><p>Huisarts</p></div>
+                    <div class="card"><h4><i class="fas fa-tooth" style="font-size: 20px;"></i> Tandarts</h4><p>Tandarts</p></div>
+                    <div class="card"><h4><i class="fas fa-pills" style="font-size: 20px;"></i> Apotheker</h4><p>Apotheker</p></div>
+                    <div class="card"><h4><i class="fas fa-heartbeat" style="font-size: 20px;"></i> Fysiotherapeut</h4><p>Fysiotherapeut</p></div>
                 </div>
             </section>
         </div>
@@ -279,7 +148,7 @@
     <main id="diensten" class="page">
         <div class="page-banner">
             <div class="container">
-                <h1 style="color: white; margin: 0; font-size: 36px;">Onze Diensten</h1>
+                <h1 style="color: white; margin: 0; font-size: 36px;">Diensten</h1>
             </div>
         </div>
         <div class="container">
@@ -288,23 +157,34 @@
             </div>
             
             <section class="section" style="padding-top: 20px;">
-                <p style="font-size: 18px; margin-bottom: 50px; max-width: 800px;">Bij Noord Negentig bieden we een totaalpakket. Van het samenstellen van uw jaarrekening tot strategisch advies over uw praktijkovername.</p>
+                <p style="font-size: 18px; margin-bottom: 50px; max-width: 800px;">Noord negentig ondersteunt jouw financiële en fiscale zaken. Jij beslist wat je aan ons overlaat en wat je zelf wilt doen. Wij zorgen dat jij je zaken goed voor elkaar hebt. En je kunt bij ons terecht voor advies op maat.</p>
+
+                <ul style="margin: 0 0 40px 20px; color: var(--text-light); line-height: 1.8;">
+                    <li>Fiscaal advies</li>
+                    <li>Accountancy</li>
+                    <li>Advies bij prak­tijkovername en praktijkstart</li>
+                    <li>Advies bij de koop en verkoop van bedrijven</li>
+                    <li>Ondersteuning bij jouw bedrijfsvoering op financieel én persoonlijk niveau</li>
+                    <li>HRM en salarisadministratie</li>
+                    <li>Bedrijfs­administratie uitbesteden</li>
+                    <li>Online dienstverlening.</li>
+                </ul>
                 
                 <div class="grid-3">
                     <div class="card">
                         <i class="fas fa-chart-line"></i>
                         <h3>Accountancy</h3>
-                        <p>Betrouwbare jaarrekeningen, tussentijdse cijfers en real-time dashboards zodat u precies weet hoe uw praktijk of bedrijf ervoor staat.</p>
+                        <p>Noord negentig ondersteunt jouw financiële en fiscale zaken met accountancy op maat.</p>
                     </div>
                     <div class="card">
                         <i class="fas fa-calculator"></i>
                         <h3>Fiscaal Advies</h3>
-                        <p>We verzorgen niet alleen uw aangiftes (IB, Vpb, BTW), maar denken proactief mee over het optimaliseren van uw belastingpositie.</p>
+                        <p>Fiscaal advies dat past bij jouw praktijk of onderneming.</p>
                     </div>
                     <div class="card">
                         <i class="fas fa-exchange-alt"></i>
                         <h3>Praktijkovername</h3>
-                        <p>Volledige begeleiding bij de aan- of verkoop van een praktijk of bedrijf. Inclusief waardebepaling, due diligence en contracten.</p>
+                        <p>Advies bij praktijkovername en praktijkstart, en bij de koop en verkoop van bedrijven.</p>
                     </div>
                 </div>
             </section>
@@ -320,12 +200,12 @@
             <section class="section" style="padding-top: 20px;">
                 <div class="grid-2" style="align-items: center;">
                     <div>
-                        <h1>Persoonlijk, betrokken en proactief</h1>
-                        <p style="font-size: 18px; margin-bottom: 20px;">Noord Negentig is al meer dan 30 jaar een begrip in Groningen en omstreken. Wat ooit begon als een klein regionaal kantoor, is uitgegroeid tot dé vertrouwenspartner voor honderden zorgprofessionals en MKB-ondernemers in Noord-Nederland.</p>
+                        <h1>Goed voor elkaar</h1>
+                        <p style="font-size: 18px; margin-bottom: 20px;">Medische en vrije beroepsbeoefenaren, starters en MKB-ondernemers op zoek naar een kantoor, dat alert en proactief ondersteuning en advies biedt op fiscaal en financieel terrein en oog heeft voor de mens achter de cijfers.</p>
                         
                         <div style="margin-top: 30px;">
-                            <h3 style="color: var(--brand-cyan);"><i class="fas fa-bullseye"></i> Onze Missie</h3>
-                            <p>Het financieel ontzorgen en fiscaal optimaliseren van ondernemers en medici, met een persoonlijke aanpak die net zo betrokken is als uzelf.</p>
+                            <h3 style="color: var(--brand-cyan);"><i class="fas fa-bullseye"></i> Wij ondersteunen</h3>
+                            <p>Ondersteuning bij jouw bedrijfsvoering op financieel én persoonlijk niveau, HRM en salarisadministratie, bedrijfsadministratie uitbesteden en online dienstverlening.</p>
                         </div>
                     </div>
                     <div>
@@ -339,11 +219,11 @@
     <main id="blog" class="page">
         <div class="container">
             <div class="breadcrumbs">
-                <span onclick="navTo('home')">Home</span> > Blog & Actueel
+                <span onclick="navTo('home')">Home</span> > Nieuws
             </div>
             <section class="section" style="padding-top: 20px;">
-                <h1>Kennisbank & Actueel</h1>
-                <p style="font-size: 18px;">Blijf op de hoogte van de laatste fiscale en sector-specifieke ontwikkelingen.</p>
+                <h1>Nieuws</h1>
+                <p style="font-size: 18px;">Lees hier onze blogs.</p>
             </section>
         </div>
     </main>
@@ -356,22 +236,22 @@
             <section class="section" style="padding-top: 20px;">
                 <div class="contact-grid">
                     <div>
-                        <h1 style="font-size: 42px;">Neem contact op</h1>
-                        <p style="font-size: 18px; margin-bottom: 40px;">Wij reageren binnen 1 werkdag. Liever direct iemand spreken? Bel ons op <strong style="color: var(--brand-cyan);">(050) 520 53 00</strong>.</p>
+                        <h1 style="font-size: 42px;">Contact</h1>
+                        <p style="font-size: 18px; margin-bottom: 40px;">Dringende vraag? Laat je nummer achter en we bellen je snel terug.</p>
                         <div style="margin-bottom: 30px;">
                             <h4 style="margin-bottom: 5px; color: var(--primary);"><i class="fas fa-map-marker-alt" style="width: 20px; color: var(--brand-cyan);"></i> Bezoekadres</h4>
                             <p>Paterswoldseweg 813<br>9728 BM Groningen</p>
                         </div>
                         <div style="margin-bottom: 30px;">
                             <h4 style="margin-bottom: 5px; color: var(--primary);"><i class="fas fa-clock" style="width: 20px; color: var(--brand-cyan);"></i> Openingstijden</h4>
-                            <p>Bereikbaar op werkdagen van 8:30 – 17:30</p>
+                            <p>Postbus 8001<br>9702 KA Groningen</p>
                         </div>
                     </div>
                     <div class="card" style="box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 4px solid var(--primary);">
                         <form onsubmit="event.preventDefault(); alert('Verzonden!');">
                             <div class="form-group"><label>Naam *</label><input type="text" required></div>
                             <div class="form-group"><label>E-mailadres *</label><input type="email" required></div>
-                            <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Verstuur bericht</button>
+                            <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Bel me terug</button>
                         </form>
                     </div>
                 </div>
@@ -379,40 +259,20 @@
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-logo">
-                    <svg><use href="#logo-noord-negentig"></use></svg>
-                    <p style="color: #ccc; margin-top: 10px;">Paterswoldseweg 813<br>9728 BM Groningen</p>
-                </div>
-                <div>
-                    <h4 style="color: white; margin-bottom: 20px;">Snel naar</h4>
-                    <ul style="list-style: none;">
-                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('beroepsgroepen')">Beroepsgroepen</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('diensten')">Diensten</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('overons')">Over ons</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('blog')">Blog</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" onclick="navTo('contact')">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2026 Noord Negentig. Alle rechten voorbehouden.
-            </div>
-        </div>
-    </footer>
+        <div id="site-footer"></div>
+
+
 
     <script>
-        async function loadHeaderComponent() {
+        async function loadComponent(targetId, componentPath, errorMessage) {
             try {
-                const response = await fetch('components/header.html');
+                const response = await fetch(componentPath);
                 if (!response.ok) {
-                    throw new Error('Header component kon niet geladen worden.');
+                    throw new Error(errorMessage);
                 }
 
-                const headerMarkup = await response.text();
-                document.getElementById('site-header').innerHTML = headerMarkup;
+                const markup = await response.text();
+                document.getElementById(targetId).innerHTML = markup;
             } catch (error) {
                 console.error(error);
             }
@@ -437,7 +297,10 @@
         }
 
         document.addEventListener('DOMContentLoaded', async () => {
-            await loadHeaderComponent();
+            await Promise.all([
+                loadComponent('site-header', 'components/header.html', 'Header component kon niet geladen worden.'),
+                loadComponent('site-footer', 'components/footer.html', 'Footer component kon niet geladen worden.')
+            ]);
         });
     </script>
 </body>
