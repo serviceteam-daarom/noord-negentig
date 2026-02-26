@@ -187,24 +187,7 @@
         </symbol>
     </svg>
 
-    <header>
-        <div class="nav-container">
-            <div class="logo" onclick="navTo('home')">
-                <svg><use href="#logo-noord-negentig"></use></svg>
-            </div>
-            <nav class="nav-links">
-                <span onclick="navTo('beroepsgroepen')" id="nav-beroepsgroepen">Beroepsgroepen</span>
-                <span onclick="navTo('diensten')" id="nav-diensten">Diensten</span>
-                <span onclick="navTo('overons')" id="nav-overons">Over ons</span>
-                <span onclick="navTo('blog')" id="nav-blog">Blog</span>
-                <span onclick="navTo('contact')" id="nav-contact">Contact</span>
-            </nav>
-            <div class="nav-right">
-                <span class="phone"><i class="fas fa-phone-alt" style="color: var(--brand-cyan);"></i> (050) 520 53 00</span>
-                <button class="btn btn-cyan" onclick="navTo('contact')">Plan gesprek</button>
-            </div>
-        </div>
-    </header>
+    <div id="site-header"></div>
 
     <main id="home" class="page active">
         <section class="hero">
@@ -421,6 +404,20 @@
     </footer>
 
     <script>
+        async function loadHeaderComponent() {
+            try {
+                const response = await fetch('components/header.html');
+                if (!response.ok) {
+                    throw new Error('Header component kon niet geladen worden.');
+                }
+
+                const headerMarkup = await response.text();
+                document.getElementById('site-header').innerHTML = headerMarkup;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
         function navTo(pageId) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -428,9 +425,9 @@
             document.querySelectorAll('.nav-links span').forEach(link => {
                 link.classList.remove('active-link');
             });
-            
+
             document.getElementById(pageId).classList.add('active');
-            
+
             let activeLink = document.getElementById('nav-' + pageId);
             if(activeLink) {
                 activeLink.classList.add('active-link');
@@ -438,6 +435,10 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadHeaderComponent();
+        });
     </script>
 </body>
 </html>
